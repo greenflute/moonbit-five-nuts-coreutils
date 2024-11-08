@@ -4,7 +4,7 @@
 
 This repository contains programs equivalent to GNU
 [coreutils](https://www.gnu.org/software/coreutils/), written in the
-[Moonbit](https://github.com/five-nuts/coreutils).
+[Moonbit](https://www.moonbitlang.com/).
 
 ## Goal
 
