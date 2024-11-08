@@ -1,5 +1,7 @@
 # coreutils in Moonbit
 
+[![Test](https://github.com/five-nuts/coreutils/actions/workflows/test.yaml/badge.svg)](https://github.com/five-nuts/coreutils/actions/workflows/test.yaml)
+
 This repository contains programs equivalent to GNU
 [coreutils](https://www.gnu.org/software/coreutils/), written in the
 [Moonbit](https://github.com/five-nuts/coreutils).
