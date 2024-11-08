@@ -28,6 +28,8 @@ Contributions written in other languages will likely be rejected.
 When your contribution is finalized, don't forget to update the completed
 count below and mark it as done in this README.md. Thanks!
 
+Commit message should follow [conventional commits](https://www.conventionalcommits.org/)
+
 ## Completed (1/109)
 
 |  Done   | Cmd       | Descripton                                       |
