@@ -67,7 +67,7 @@ Commit message should follow [conventional commits](https://www.conventionalcomm
 |         | expand    | Convert tabs to spaces                           |
 |         | expr      | Evaluate expressions                             |
 |         | factor    | Print prime factors                              |
-|         | false     | Do nothing, unsuccessfully                       |
+| &check; | false     | Do nothing, unsuccessfully                       |
 |         | fmt       | Reformat paragraph text                          |
 |         | fold      | Wrap input lines to fit in specified width       |
 |         | groups    | Print group names a user is in                   |
@@ -130,7 +130,7 @@ Commit message should follow [conventional commits](https://www.conventionalcomm
 |         | timeout   | Run a command with a time limit                  |
 |         | touch     | Change file timestamps                           |
 |         | tr        | Translate, squeeze, and/or delete characters     |
-|         | true      | Do nothing, successfully                         |
+| &check; | true      | Do nothing, successfully                         |
 |         | truncate  | Shrink or extend the size of a file              |
 |         | tsort     | Topological sort                                 |
 |         | tty       | Print file name of terminal on standard input    |
