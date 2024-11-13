@@ -1,0 +1,10 @@
+{
+  "is-main": true,
+  "import": [
+    "lijunchen/unstable_io/env",
+    "lijunchen/unstable_io/io",
+    "lijunchen/unstable_io/sys",
+    "Yoorkin/ArgParser",
+    "moonbitlang/x/fs"
+  ]
+}
