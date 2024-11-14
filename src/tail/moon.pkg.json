@@ -1,0 +1,7 @@
+{
+    "is-main": true,
+    "import": [
+     "lijunchen/unstable_io/env",
+     "moonbitlang/x/fs"
+    ]
+  }

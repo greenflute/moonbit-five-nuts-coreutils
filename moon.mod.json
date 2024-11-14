@@ -6,5 +6,11 @@
   "license": "Apache-2.0",
   "keywords": [],
   "description": "",
-  "source": "src"
+  "source": "src",
+  "deps": {
+    "moonbitlang/x": "0.4.11",
+    "Yoorkin/ArgParser": "0.1.6",
+    "moonbitlang/std": "0.1.0",
+    "lijunchen/unstable_io": "0.1.3"
+  }
 }
