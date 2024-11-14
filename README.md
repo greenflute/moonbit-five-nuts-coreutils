@@ -32,7 +32,7 @@ count below and mark it as done in this README.md. Thanks!
 
 Commit message should follow [conventional commits](https://www.conventionalcommits.org/)
 
-## Completed (1/109)
+## Completed (3/109)
 
 |  Done   | Cmd       | Descripton                                       |
 | :-----: | --------- | ------------------------------------------------ |
