@@ -183,13 +183,13 @@ fn tail!(file: String, reverse: Bool, by_chars: Bool, count: Int, follow: Bool) 
       for line in content_slice {println(line)}
     }
   }
-
+  ignore(follow)
 }
 
 
 // 使用示例
 fn main {
-  let args = @env.get_args()
+  let args = @sys.get_cli_args()
 
   //test
   //for arg in args {println("DEBUG: arg: " + arg)}
