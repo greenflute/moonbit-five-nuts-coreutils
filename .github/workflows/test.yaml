@@ -22,6 +22,8 @@ jobs:
       - name: Check Moonbit Version
         run: |
           moon version --all
+          moon update
+          moon install
           moon test
 
       - name: Integrity test
