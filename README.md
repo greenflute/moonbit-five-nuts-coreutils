@@ -32,7 +32,7 @@ count below and mark it as done in this README.md. Thanks!
 
 Commit message should follow [conventional commits](https://www.conventionalcommits.org/)
 
-## Completed (3/109)
+## Completed (4/109)
 
 |  Done   | Cmd       | Descripton                                       |
 | :-----: | --------- | ------------------------------------------------ |
@@ -124,7 +124,7 @@ Commit message should follow [conventional commits](https://www.conventionalcomm
 |         | sum       | Print checksum and block counts                  |
 |         | sync      | Synchronize cached writes to persistent storage  |
 |         | tac       | Concatenate and write files in reverse           |
-|         | tail      | Output the last part of files                    |
+| &check; | tail      | Output the last part of files                    |
 |         | tee       | Redirect output to multiple files or processes   |
 |         | test      | Check file types and compare values              |
 |         | timeout   | Run a command with a time limit                  |
