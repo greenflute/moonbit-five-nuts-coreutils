@@ -2,7 +2,8 @@
   "name": "five-nuts/coreutils",
   "version": "0.1.4",
   "deps": {
-    "moonbitlang/x": "0.4.12"
+    "moonbitlang/x": "0.4.12",
+    "Yoorkin/ArgParser": "0.1.6"
   },
   "readme": "README.md",
   "repository": "",
