@@ -1,6 +1,10 @@
 {
   "name": "five-nuts/coreutils",
   "version": "0.1.1",
+  "deps": {
+    "moonbitlang/x": "0.4.12",
+    "Yoorkin/ArgParser": "0.1.6"
+  },
   "readme": "README.md",
   "repository": "",
   "license": "Apache-2.0",

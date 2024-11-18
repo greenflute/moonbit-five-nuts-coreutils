@@ -1,3 +1,42 @@
+
+/// COPY FROM lijunchen/unstable_io/io/lib.wasm-gc.mbt
+fn __read_char() -> Int = "__moonbit_io_unstable" "read_char"
+
+
+fn char_from_int(val : Int) -> Char? = "%char_from_int"
+
+/// Reads a single character from standard input.
+///
+/// # Returns
+/// An optional character. Returns `None` if EOF is reached.
+pub fn read_char() -> Char? {
+  char_from_int(__read_char())
+}
+
+pub fn read_line_from_stdin() -> String? {
+  let buf = @buffer.new()
+  while true {
+    let c = read_char()
+    match c {
+      None => match @buffer.to_unchecked_string(buf) { // FIX BUG: if read EOF, return buffer content
+        "" => return None
+        s => return Some(s)
+      }
+      Some('\n') => {
+        buf.write_char('\n')
+        break
+      }
+      Some(c) => buf.write_char(c)
+    }
+  }
+  Some(@buffer.to_unchecked_string(buf))
+}
+/// END COPY
+
+
+
+
+
 struct Stats {
   lines : Int?
   words : Int?
@@ -35,7 +74,6 @@ fn Stats::to_string(self : Stats) -> String {
 fn print_stats(list : @queue.T[(Stats, String)], total_stats : Stats) -> Unit {
   if (list.is_empty()) {
     println("wc: print stats error: list is empty")
-    @sys.exit(-1)
   }
   // let max_file_length = list.iter().map(fn(pair) {pair.1.length()}).fold(fn(a: Int, b: Int) {if a > b {a} else {b}}, init=0)
   let fix_length = [match total_stats.lines {
@@ -99,14 +137,29 @@ fn Stats::op_add(self : Stats, other : Stats) -> Stats {
   }
 }
 
+fn getopts(args: Array[String]) -> Array[String] {
+  let list = @queue.new()
+  for arg in args {
+    if arg.starts_with("-") && arg.length() > 2 && not(arg.starts_with("--")) {
+      for i = 1; i < arg.length(); i = i + 1 {
+        list.push("-" + arg[i].to_string())
+      }
+    } else {
+      list.push(arg)
+    }
+  }
+
+  return list.iter().collect()
+}
+
 fn word_count(
   content : String,
   file_bytes: Bytes?,
-  ~line : Bool,
-  ~word : Bool,
-  ~char : Bool,
-  ~byte : Bool,
-  ~max_line_length : Bool
+  line~ : Bool,
+  word~ : Bool,
+  char~ : Bool,
+  byte~ : Bool,
+  max_line_length~ : Bool
 ) -> Stats {
   let lines = if line { Some(content.split("\n").count()) } else { None }
   let words = if word { Some(content.replace_all(old="\n", new=" ").split(" ").filter(fn(s) {s.length() > 0}).count()) } else { None }
@@ -127,7 +180,7 @@ fn word_count(
 }
 
 fn main {
-  let args = @env.get_args()
+  let args = getopts(@sys.get_cli_args())
   let line_ref = @ref.new(false) // -l: 统计行数
   let word_ref = @ref.new(false) // -w: 统计单词数
   let char_ref = @ref.new(false) // -m: 统计字符数
@@ -136,7 +189,6 @@ fn main {
   let help_flag = @ref.new(false) // --help: 显示帮助
   let version_flag = @ref.new(false) // --version: 显示版本信息
   let files : @queue.T[String] = @queue.new()
-  let mut returncode = 0
   let usage =
     #| wc - Print newline, word, and byte counts for each FILE, and a total line if
     #| more than one FILE is specified.  A word is a non-zero-length sequence of
@@ -180,6 +232,8 @@ fn main {
   let mut line = line_ref.val
   let mut word = word_ref.val
   let mut byte = byte_ref.val
+
+
   if help_flag.val {
     println(usage)
     return
@@ -197,23 +251,23 @@ fn main {
   //
   if files.is_empty() {
     let lines : @queue.T[String] = @queue.new()
-    loop @io.read_line_from_stdin() {
+    loop read_line_from_stdin() {
       None => break
       Some(line) =>
         continue {
             lines.push(line)
-            @io.read_line_from_stdin()
+            read_line_from_stdin()
           }
     }
     let content = @string.concat(lines.iter().collect(), separator="")
     let stats = word_count(
       content,
       if byte {Some(content.to_bytes())} else {None},
-      ~line,
-      ~word,
-      ~char,
-      ~byte,
-      ~max_line_length,
+      line~,
+      word~,
+      char~,
+      byte~,
+      max_line_length~,
     )
     println("  \{stats.to_string()}")
   } else {
@@ -251,14 +305,12 @@ fn main {
       fn(file) {
         if not(@fs.path_exists(path=file)) {
           println("wc: \{file}: No such file or directory")
-          returncode = 1
           return
         }
         let content = match @fs.read_file_to_string?(path=file) {
           Ok(s) => s
           Err(_) => {
             println("wc: \{file}: meet a error when read file")
-            returncode = 1
             return
           }
         }
@@ -268,7 +320,6 @@ fn main {
             Ok(s) => Some(s)
             Err(_) => {
               println("wc: \{file}: meet a error when read file")
-              returncode = 1
               return
             }
           }
@@ -278,11 +329,11 @@ fn main {
         let stats = word_count(
           content,
           bytes,
-          ~line,
-          ~word,
-          ~char,
-          ~byte,
-          ~max_line_length,
+          line~,
+          word~,
+          char~,
+          byte~,
+          max_line_length~,
         )
         total_stats += stats
         list.push((stats, file))
@@ -297,6 +348,4 @@ fn main {
     }
     
   }
-  @sys.exit(returncode)
-  println("args: \{args}")
 }

@@ -15,6 +15,5 @@ options:
      -v, --version          output version information and exit
 
 ## TODO
-- 参数解析：不能解析 -lmcLw 这样的参数
-- stdin对于bytes的计算有问题，没有考虑Locale问题
+- stdin对于bytes的计算有问题
 - 行数计算和gnu的wc略有不同，包含EOF前不存在"\n"的最后一行
