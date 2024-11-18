@@ -1,14 +1,9 @@
-# Description:
-#   - Setup Moonbit Test
-# REF:
-#   - https://github.com/marketplace/actions/checkout
-
 name: Test
 on:
+  pull_request:
   push:
     branches:
       - main
-      - dev
 
     paths-ignore:
       - '**.md'
@@ -27,4 +22,13 @@ jobs:
       - name: Check Moonbit Version
         run: |
           moon version --all
+          moon update
+          moon install
           moon test
+
+      - name: Integrity test
+        run: |
+          for i in tests/*.sh; do
+            echo $i
+            bash $i
+          done
