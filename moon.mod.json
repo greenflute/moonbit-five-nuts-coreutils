@@ -3,7 +3,7 @@
   "version": "0.1.4",
   "deps": {
     "moonbitlang/x": "0.4.12",
-    "Yoorkin/ArgParser": "0.1.6"
+    "Yoorkin/ArgParser": "0.1.7"
   },
   "readme": "README.md",
   "repository": "",

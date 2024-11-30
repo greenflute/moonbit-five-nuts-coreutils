@@ -16,7 +16,7 @@ fn getopts(args : Array[String]) -> Array[String] {
   // 创建一个队列来存储解析后的参数
   let list = @queue.new()
   // 遍历传入的参数
-  for arg in args {
+  for arg in args[2:] {
     // 如果参数以 "-" 开头且长度大于 2，并且不以 "--" 开头
     if arg.starts_with("-") && arg.length() > 2 && not(arg.starts_with("--")) {
       // 将参数中的每个字符拆分为单独的选项
