@@ -105,7 +105,7 @@ Commit message should follow [conventional commits](https://www.conventionalcomm
 |         | readlink  | Print value of a symlink or canonical file name  |
 |         | realpath  | Print the resolved file name                     |
 |         | rm        | Remove files or directories                      |
-|         | rmdir     | Remove empty directories                         |
+| &check; | rmdir     | Remove empty directories                         |
 |         | runcon    | Run a command in specified SELinux context       |
 |         | seq       | Print numeric sequences                          |
 |         | sha1sum   | Print or check SHA-1 digests                     |

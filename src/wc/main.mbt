@@ -150,7 +150,7 @@ fn Stats::op_add(self : Stats, other : Stats) -> Stats {
 
 fn getopts(args: Array[String]) -> Array[String] {
   let list = @queue.new()
-  for arg in args {
+  for arg in args[2:] {
     if arg.starts_with("-") && arg.length() > 2 && not(arg.starts_with("--")) {
       for i = 1; i < arg.length(); i = i + 1 {
         list.push("-" + arg[i].to_string())
